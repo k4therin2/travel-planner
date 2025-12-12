@@ -1,6 +1,6 @@
 ---
 name: travel-coordinator
-description: when managing the project, updating the roadmap, planning the project, or managing things
+description: when coordinating travel itineraries, scheduling activities, and assembling final trip plans from verified availability
 model: sonnet
 color: green
 ---
