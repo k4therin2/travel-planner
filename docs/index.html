@@ -3,418 +3,245 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>K42 Travel - Intelligent Trip Coordination</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <title>K42 Travel</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    :root {
-      --primary: #6366f1;
-      --primary-dark: #4f46e5;
-      --accent: #06b6d4;
-      --dark: #0f172a;
-      --gray: #64748b;
-    }
-
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: var(--dark);
-      color: white;
+      font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+      background: #fff;
+      color: #000;
       min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    /* Animated gradient background */
-    .bg-gradient {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background:
-        radial-gradient(ellipse at 20% 20%, rgba(99, 102, 241, 0.3) 0%, transparent 50%),
-        radial-gradient(ellipse at 80% 80%, rgba(6, 182, 212, 0.3) 0%, transparent 50%),
-        radial-gradient(ellipse at 50% 50%, rgba(139, 92, 246, 0.2) 0%, transparent 70%);
-      animation: pulse 8s ease-in-out infinite alternate;
-      z-index: -1;
-    }
-
-    @keyframes pulse {
-      0% { opacity: 0.7; transform: scale(1); }
-      100% { opacity: 1; transform: scale(1.1); }
-    }
-
-    /* Grid pattern overlay */
-    .grid-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-      background-size: 50px 50px;
-      z-index: -1;
     }
 
     .container {
-      max-width: 1200px;
+      max-width: 800px;
       margin: 0 auto;
-      padding: 0 24px;
+      padding: 60px 24px;
     }
 
-    /* Header */
+    /* Rainbow accent bar */
+    .rainbow-bar {
+      height: 4px;
+      background: linear-gradient(90deg,
+        #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3
+      );
+    }
+
     header {
       padding: 24px 0;
-      position: relative;
-      z-index: 10;
+      border-bottom: 1px solid #eee;
     }
 
     .logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 700;
       font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: -0.5px;
     }
 
-    .logo-icon {
-      width: 40px;
-      height: 40px;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.25rem;
-    }
-
-    /* Hero */
-    .hero {
-      min-height: calc(100vh - 100px);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 60px 0;
-      position: relative;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(99, 102, 241, 0.2);
-      border: 1px solid rgba(99, 102, 241, 0.3);
-      padding: 8px 16px;
-      border-radius: 100px;
-      font-size: 0.875rem;
-      font-weight: 500;
-      margin-bottom: 32px;
-      animation: fadeInUp 0.6s ease-out;
-    }
-
-    .badge::before {
-      content: "";
-      width: 8px;
-      height: 8px;
-      background: #22c55e;
-      border-radius: 50%;
-      animation: blink 2s infinite;
-    }
-
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.3; }
+    main {
+      padding: 80px 0;
     }
 
     h1 {
-      font-size: clamp(2.5rem, 8vw, 5rem);
-      font-weight: 800;
-      line-height: 1.1;
+      font-size: 3rem;
+      font-weight: 700;
+      line-height: 1.2;
       margin-bottom: 24px;
-      animation: fadeInUp 0.6s ease-out 0.1s both;
+      letter-spacing: -1px;
     }
 
-    .gradient-text {
-      background: linear-gradient(135deg, #fff 0%, var(--accent) 50%, var(--primary) 100%);
+    .rainbow-text {
+      background: linear-gradient(90deg,
+        #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3
+      );
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
 
     .subtitle {
-      font-size: clamp(1.125rem, 3vw, 1.5rem);
-      color: var(--gray);
-      max-width: 600px;
-      margin-bottom: 48px;
+      font-size: 1.25rem;
+      color: #666;
+      max-width: 500px;
       line-height: 1.6;
-      animation: fadeInUp 0.6s ease-out 0.2s both;
+      margin-bottom: 40px;
     }
 
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    .badge {
+      display: inline-block;
+      padding: 6px 12px;
+      border: 1px solid #000;
+      border-radius: 4px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      margin-bottom: 48px;
     }
 
-    /* CTA Buttons */
-    .cta-group {
+    .features {
+      margin-top: 60px;
+      padding-top: 40px;
+      border-top: 1px solid #eee;
+    }
+
+    .features h2 {
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #999;
+      margin-bottom: 24px;
+    }
+
+    .feature-list {
+      display: grid;
+      gap: 32px;
+    }
+
+    .feature {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .feature-marker {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-top: 8px;
+      flex-shrink: 0;
+    }
+
+    .feature:nth-child(1) .feature-marker { background: #ff0000; }
+    .feature:nth-child(2) .feature-marker { background: #ffff00; }
+    .feature:nth-child(3) .feature-marker { background: #00ff00; }
+    .feature:nth-child(4) .feature-marker { background: #0000ff; }
+
+    .feature h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .feature p {
+      color: #666;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .cta {
+      margin-top: 60px;
       display: flex;
       gap: 16px;
       flex-wrap: wrap;
-      justify-content: center;
-      animation: fadeInUp 0.6s ease-out 0.3s both;
     }
 
     .btn {
-      padding: 16px 32px;
-      border-radius: 12px;
-      font-weight: 600;
+      padding: 12px 24px;
       font-size: 1rem;
+      font-weight: 500;
       text-decoration: none;
-      transition: all 0.3s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
+      border-radius: 4px;
+      transition: all 0.2s;
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      color: white;
-      box-shadow: 0 4px 24px rgba(99, 102, 241, 0.4);
+      background: #000;
+      color: #fff;
     }
 
     .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 32px rgba(99, 102, 241, 0.5);
+      background: #333;
     }
 
     .btn-secondary {
-      background: rgba(255,255,255,0.1);
-      color: white;
-      border: 1px solid rgba(255,255,255,0.2);
+      background: #fff;
+      color: #000;
+      border: 1px solid #000;
     }
 
     .btn-secondary:hover {
-      background: rgba(255,255,255,0.15);
+      background: #f5f5f5;
     }
 
-    /* Features */
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
-      margin-top: 80px;
-      animation: fadeInUp 0.6s ease-out 0.4s both;
-    }
-
-    .feature-card {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 16px;
-      padding: 32px;
-      transition: all 0.3s ease;
-    }
-
-    .feature-card:hover {
-      background: rgba(255,255,255,0.08);
-      border-color: rgba(99, 102, 241, 0.3);
-      transform: translateY(-4px);
-    }
-
-    .feature-icon {
-      width: 48px;
-      height: 48px;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      margin-bottom: 16px;
-    }
-
-    .feature-card h3 {
-      font-size: 1.25rem;
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-
-    .feature-card p {
-      color: var(--gray);
-      font-size: 0.95rem;
-      line-height: 1.6;
-    }
-
-    /* Tech Stack */
-    .tech-section {
-      margin-top: 100px;
-      text-align: center;
-      animation: fadeInUp 0.6s ease-out 0.5s both;
-    }
-
-    .tech-section h2 {
-      font-size: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      color: var(--gray);
-      margin-bottom: 32px;
-    }
-
-    .tech-logos {
-      display: flex;
-      justify-content: center;
-      gap: 48px;
-      flex-wrap: wrap;
-      opacity: 0.6;
-    }
-
-    .tech-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-weight: 500;
-      color: var(--gray);
-    }
-
-    /* Footer */
     footer {
-      margin-top: 120px;
       padding: 40px 0;
-      border-top: 1px solid rgba(255,255,255,0.1);
-      text-align: center;
-      color: var(--gray);
+      border-top: 1px solid #eee;
+      color: #999;
       font-size: 0.875rem;
     }
 
-    /* Floating particles */
-    .particle {
-      position: fixed;
-      width: 4px;
-      height: 4px;
-      background: var(--accent);
-      border-radius: 50%;
-      opacity: 0.3;
-      animation: float 20s infinite linear;
-    }
-
-    .particle:nth-child(1) { left: 10%; animation-delay: 0s; }
-    .particle:nth-child(2) { left: 30%; animation-delay: -5s; }
-    .particle:nth-child(3) { left: 50%; animation-delay: -10s; }
-    .particle:nth-child(4) { left: 70%; animation-delay: -15s; }
-    .particle:nth-child(5) { left: 90%; animation-delay: -7s; }
-
-    @keyframes float {
-      0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-      10% { opacity: 0.3; }
-      90% { opacity: 0.3; }
-      100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
-    }
-
-    /* Responsive */
     @media (max-width: 640px) {
-      .cta-group { flex-direction: column; }
-      .btn { width: 100%; justify-content: center; }
+      h1 { font-size: 2rem; }
+      .subtitle { font-size: 1rem; }
+      .cta { flex-direction: column; }
+      .btn { text-align: center; }
     }
   </style>
 </head>
 <body>
-  <div class="bg-gradient"></div>
-  <div class="grid-overlay"></div>
+  <div class="rainbow-bar"></div>
 
-  <div class="particle"></div>
-  <div class="particle"></div>
-  <div class="particle"></div>
-  <div class="particle"></div>
-  <div class="particle"></div>
+  <div class="container">
+    <header>
+      <div class="logo">K42 Travel</div>
+    </header>
 
-  <header>
-    <div class="container">
-      <div class="logo">
-        <div class="logo-icon">🧭</div>
-        K42 Travel
-      </div>
-    </div>
-  </header>
-
-  <main class="hero">
-    <div class="container">
+    <main>
       <div class="badge">Coming Soon</div>
 
       <h1>
         Agentic Travel<br>
-        <span class="gradient-text">Coordination</span>
+        <span class="rainbow-text">Coordination</span>
       </h1>
 
       <p class="subtitle">
         AI agents that verify real-time availability, rebalance your itinerary,
-        and coordinate bookings across multiple providers — automatically.
+        and coordinate bookings across multiple providers.
       </p>
 
-      <div class="cta-group">
-        <a href="mailto:hello@example.com" class="btn btn-primary">
-          Get Early Access
-          <span>→</span>
-        </a>
-        <a href="https://github.com/k4therin2/travel-planner" class="btn btn-secondary">
-          View on GitHub
-        </a>
+      <div class="cta">
+        <a href="mailto:hello@example.com" class="btn btn-primary">Get Early Access</a>
+        <a href="https://github.com/k4therin2/travel-planner" class="btn btn-secondary">GitHub</a>
       </div>
 
       <div class="features">
-        <div class="feature-card">
-          <div class="feature-icon">🤖</div>
-          <h3>Multi-Agent Orchestration</h3>
-          <p>Specialized agents for planning, coordination, and booking verification work together to build your perfect trip.</p>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon">⚡</div>
-          <h3>Real-Time Availability</h3>
-          <p>Live API integrations verify pricing and availability across Viator, ResortPass, and direct booking platforms.</p>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon">🔄</div>
-          <h3>Smart Rebalancing</h3>
-          <p>When something's unavailable, agents automatically suggest alternatives that match your preferences and constraints.</p>
-        </div>
-      </div>
-
-      <div class="tech-section">
-        <h2>Powered By</h2>
-        <div class="tech-logos">
-          <div class="tech-item">
-            <span>🧠</span> Claude AI
+        <h2>How it works</h2>
+        <div class="feature-list">
+          <div class="feature">
+            <div class="feature-marker"></div>
+            <div>
+              <h3>Multi-Agent Orchestration</h3>
+              <p>Specialized agents for planning, coordination, and booking verification work together to build your trip.</p>
+            </div>
           </div>
-          <div class="tech-item">
-            <span>🎭</span> Playwright
+          <div class="feature">
+            <div class="feature-marker"></div>
+            <div>
+              <h3>Real-Time Availability</h3>
+              <p>Live API integrations verify pricing and availability across Viator, ResortPass, and direct booking platforms.</p>
+            </div>
           </div>
-          <div class="tech-item">
-            <span>🌐</span> Viator API
+          <div class="feature">
+            <div class="feature-marker"></div>
+            <div>
+              <h3>Smart Rebalancing</h3>
+              <p>When something's unavailable, agents automatically suggest alternatives that match your preferences.</p>
+            </div>
           </div>
-          <div class="tech-item">
-            <span>⚙️</span> Node.js
+          <div class="feature">
+            <div class="feature-marker"></div>
+            <div>
+              <h3>Allergy & Constraint Aware</h3>
+              <p>Your dietary restrictions and preferences are tracked and communicated to every booking.</p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </main>
+    </main>
 
-  <footer>
-    <div class="container">
-      <p>K42 Travel — Built with AI agents that actually work. &copy; 2025</p>
-    </div>
-  </footer>
+    <footer>
+      <p>K42 Travel &copy; 2025</p>
+    </footer>
+  </div>
 </body>
 </html>
