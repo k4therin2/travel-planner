@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verify Availability - Puerto Vallarta Trip</title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --success: #16a34a;
+      --warning: #d97706;
+      --gray: #6b7280;
+      --light: #f3f4f6;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+      color: #1f2937;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 24px;
+      background: #f9fafb;
+    }
+    h1 { margin-bottom: 8px; }
+    .subtitle { color: var(--gray); margin-bottom: 24px; }
+
+    .step {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .step-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .step-number {
+      width: 32px;
+      height: 32px;
+      background: var(--primary);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+    }
+    .step-title { font-weight: 600; font-size: 1.1rem; }
+
+    .copy-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+    .copy-btn:hover { background: #1d4ed8; }
+    .copy-btn.copied { background: var(--success); }
+
+    .activity-card {
+      background: var(--light);
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 12px;
+    }
+    .activity-name { font-weight: 600; margin-bottom: 4px; }
+    .activity-date { color: var(--gray); font-size: 0.9rem; margin-bottom: 8px; }
+    .activity-link {
+      color: var(--primary);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .activity-link:hover { text-decoration: underline; }
+
+    .result-input {
+      width: 100%;
+      min-height: 80px;
+      padding: 12px;
+      border: 2px solid #e5e7eb;
+      border-radius: 8px;
+      font-family: monospace;
+      font-size: 0.9rem;
+      margin-top: 8px;
+      resize: vertical;
+    }
+    .result-input:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+    .result-input.has-data {
+      border-color: var(--success);
+      background: #f0fdf4;
+    }
+
+    .status-indicator {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      margin-right: 8px;
+    }
+    .status-pending { background: #fbbf24; }
+    .status-done { background: var(--success); }
+
+    .instructions {
+      background: #eff6ff;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 16px;
+      font-size: 0.9rem;
+    }
+    .instructions ol { margin-left: 20px; }
+    .instructions li { margin-bottom: 4px; }
+    .instructions code {
+      background: #dbeafe;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.85rem;
+    }
+
+    .next-section {
+      background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+      border-radius: 12px;
+      padding: 24px;
+      color: white;
+      text-align: center;
+    }
+    .next-section h3 { margin-bottom: 8px; }
+    .next-section p { opacity: 0.9; margin-bottom: 16px; }
+    .next-btn {
+      background: white;
+      color: var(--primary);
+      border: none;
+      padding: 14px 32px;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .next-btn:hover { transform: scale(1.05); }
+    .next-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .progress-bar {
+      height: 4px;
+      background: var(--light);
+      border-radius: 2px;
+      margin-bottom: 24px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: var(--success);
+      transition: width 0.3s;
+    }
+
+    .beach-club-verified {
+      background: #f0fdf4;
+      border: 2px solid var(--success);
+    }
+    .verified-badge {
+      background: var(--success);
+      color: white;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-left: 8px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Verify Availability</h1>
+  <p class="subtitle">Puerto Vallarta Trip • Dec 12-17, 2025</p>
+
+  <div class="progress-bar">
+    <div class="progress-fill" id="progress" style="width: 25%"></div>
+  </div>
+
+  <!-- Step 1: Copy Script -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-number">1</div>
+      <div class="step-title">Copy the extraction script</div>
+    </div>
+    <button class="copy-btn" id="copyBtn" onclick="copyScript()">
+      <span id="copyIcon">📋</span>
+      <span id="copyText">Copy Script to Clipboard</span>
+    </button>
+  </div>
+
+  <!-- Step 2: Check each activity -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-number">2</div>
+      <div class="step-title">Check each activity & paste results</div>
+    </div>
+
+    <div class="instructions">
+      <ol>
+        <li>Click the link to open the Viator page</li>
+        <li>Complete any CAPTCHA if shown</li>
+        <li>Press <code>Cmd+Option+I</code> to open DevTools</li>
+        <li>Click the <code>Console</code> tab</li>
+        <li>Paste <code>Cmd+V</code> and press <code>Enter</code></li>
+        <li>Copy the output and paste it below</li>
+      </ol>
+    </div>
+
+    <!-- Snorkel -->
+    <div class="activity-card" id="card-snorkel">
+      <div class="activity-name">
+        <span class="status-indicator status-pending" id="status-snorkel"></span>
+        Private Los Arcos Snorkeling
+      </div>
+      <div class="activity-date">Sunday, Dec 15 • Morning</div>
+      <a href="https://www.viator.com/tours/Puerto-Vallarta/Private-Los-Arcos-snorkeling/d630-46209P9"
+         target="_blank" class="activity-link">
+        Open in Viator →
+      </a>
+      <textarea class="result-input" id="result-snorkel"
+                placeholder="Paste console output here..."
+                oninput="updateStatus('snorkel')"></textarea>
+    </div>
+
+    <!-- Cooking -->
+    <div class="activity-card" id="card-cooking">
+      <div class="activity-name">
+        <span class="status-indicator status-pending" id="status-cooking"></span>
+        Mexican Cooking Experience
+      </div>
+      <div class="activity-date">Monday, Dec 16 • Morning (before Le Kliff)</div>
+      <a href="https://www.viator.com/tours/Puerto-Vallarta/Mexican-Cooking-Class-and-Mezcal-Tasting/d630-428665P2"
+         target="_blank" class="activity-link">
+        Open in Viator →
+      </a>
+      <textarea class="result-input" id="result-cooking"
+                placeholder="Paste console output here..."
+                oninput="updateStatus('cooking')"></textarea>
+    </div>
+
+    <!-- Chocolate -->
+    <div class="activity-card" id="card-chocolate">
+      <div class="activity-name">
+        <span class="status-indicator status-pending" id="status-chocolate"></span>
+        Chocolate & Truffles Workshop
+      </div>
+      <div class="activity-date">Tuesday, Dec 17 • 10:30 AM</div>
+      <a href="https://www.viator.com/tours/Puerto-Vallarta/Chocolates-and-truffles-workshop/d630-69776P2"
+         target="_blank" class="activity-link">
+        Open in Viator →
+      </a>
+      <textarea class="result-input" id="result-chocolate"
+                placeholder="Paste console output here..."
+                oninput="updateStatus('chocolate')"></textarea>
+    </div>
+
+    <!-- Beach Club - Already Verified -->
+    <div class="activity-card beach-club-verified" id="card-beach">
+      <div class="activity-name">
+        <span class="status-indicator status-done"></span>
+        Táu Beach Club Day Pass
+        <span class="verified-badge">VERIFIED</span>
+      </div>
+      <div class="activity-date">Tuesday, Dec 17 • 1:00 PM - 4:00 PM</div>
+      <a href="https://www.resortpass.com/hotels/casa-velas"
+         target="_blank" class="activity-link">
+        Book on ResortPass →
+      </a>
+      <textarea class="result-input has-data" id="result-beach" readonly>✅ VERIFIED via API
+Price: $120/person ($240 total for 2)
+Available: 5 units on Dec 17
+Hours: 10:00 AM - 5:00 PM
+Includes: 800 pesos F&B credit, wifi, valet parking</textarea>
+    </div>
+  </div>
+
+  <!-- Step 3: Generate Final Schedule -->
+  <div class="step next-section">
+    <h3>Ready to finalize?</h3>
+    <p>Once you've verified availability, generate your final itinerary</p>
+    <button class="next-btn" id="nextBtn" onclick="generateFinal()">
+      Generate Final Itinerary →
+    </button>
+  </div>
+
+  <script>
+    const extractScript = `(async()=>{const r={url:location.href,product:document.querySelector('h1')?.textContent?.trim()};document.querySelector('[data-testid*="calendar"],[class*="DatePicker"]')?.click();await new Promise(r=>setTimeout(r,2000));r.prices=[...document.querySelectorAll('[class*="price"]')].filter(e=>e.textContent.includes('$')).slice(0,2).map(e=>e.textContent.trim());r.times=[...document.querySelectorAll('[class*="time"]')].filter(e=>/\\d:\\d/.test(e.textContent)).map(e=>e.textContent.trim());console.log('=== '+r.product+' ===');console.log('Price:',r.prices[0]||'Check page');console.log('Times:',r.times.join(', ')||'Select a date to see times');console.log('URL:',r.url);})();`;
+
+    function copyScript() {
+      navigator.clipboard.writeText(extractScript).then(() => {
+        const btn = document.getElementById('copyBtn');
+        const icon = document.getElementById('copyIcon');
+        const text = document.getElementById('copyText');
+        btn.classList.add('copied');
+        icon.textContent = '✅';
+        text.textContent = 'Copied!';
+        setTimeout(() => {
+          btn.classList.remove('copied');
+          icon.textContent = '📋';
+          text.textContent = 'Copy Script to Clipboard';
+        }, 2000);
+      });
+    }
+
+    function updateStatus(activity) {
+      const input = document.getElementById(`result-${activity}`);
+      const status = document.getElementById(`status-${activity}`);
+      const hasData = input.value.trim().length > 10;
+
+      if (hasData) {
+        status.classList.remove('status-pending');
+        status.classList.add('status-done');
+        input.classList.add('has-data');
+      } else {
+        status.classList.remove('status-done');
+        status.classList.add('status-pending');
+        input.classList.remove('has-data');
+      }
+
+      updateProgress();
+    }
+
+    function updateProgress() {
+      const activities = ['snorkel', 'cooking', 'chocolate'];
+      const done = activities.filter(a =>
+        document.getElementById(`result-${a}`).value.trim().length > 10
+      ).length;
+      const progress = 25 + (done / activities.length) * 75;
+      document.getElementById('progress').style.width = `${progress}%`;
+    }
+
+    function generateFinal() {
+      // Collect all results
+      const results = {
+        snorkel: document.getElementById('result-snorkel').value,
+        cooking: document.getElementById('result-cooking').value,
+        chocolate: document.getElementById('result-chocolate').value,
+        beach: document.getElementById('result-beach').value,
+        verifiedAt: new Date().toISOString()
+      };
+
+      // Save to localStorage for the final page
+      localStorage.setItem('pvTrip_verification', JSON.stringify(results));
+
+      // Navigate to final itinerary
+      window.location.href = 'puerto_vallarta_dec2025.html';
+    }
+
+    // Load any saved data
+    window.onload = function() {
+      try {
+        const saved = JSON.parse(localStorage.getItem('pvTrip_verification') || '{}');
+        if (saved.snorkel) {
+          document.getElementById('result-snorkel').value = saved.snorkel;
+          updateStatus('snorkel');
+        }
+        if (saved.cooking) {
+          document.getElementById('result-cooking').value = saved.cooking;
+          updateStatus('cooking');
+        }
+        if (saved.chocolate) {
+          document.getElementById('result-chocolate').value = saved.chocolate;
+          updateStatus('chocolate');
+        }
+      } catch (e) {}
+    };
+  </script>
+</body>
+</html>

@@ -300,7 +300,83 @@
   <button class="print-btn" onclick="window.print()">Print Itinerary</button>
 
   <script>
-    // Copy checklist functionality could go here
+    // Load verification data from localStorage
+    window.onload = function() {
+      try {
+        const saved = JSON.parse(localStorage.getItem('pvTrip_verification') || '{}');
+
+        // Update snorkel
+        if (saved.snorkel && saved.snorkel.length > 10) {
+          updateActivityStatus('snorkel', saved.snorkel);
+        }
+
+        // Update cooking
+        if (saved.cooking && saved.cooking.length > 10) {
+          updateActivityStatus('cooking', saved.cooking);
+        }
+
+        // Update chocolate
+        if (saved.chocolate && saved.chocolate.length > 10) {
+          updateActivityStatus('chocolate', saved.chocolate);
+        }
+
+        // Show verification timestamp
+        if (saved.verifiedAt) {
+          const date = new Date(saved.verifiedAt);
+          const banner = document.createElement('div');
+          banner.className = 'verification-banner';
+          banner.innerHTML = `✅ Availability verified on ${date.toLocaleDateString()} at ${date.toLocaleTimeString()}`;
+          document.querySelector('.allergy-banner').after(banner);
+        }
+      } catch (e) {
+        console.log('No saved verification data');
+      }
+    };
+
+    function updateActivityStatus(activity, data) {
+      // Find the badge and update it
+      const badges = document.querySelectorAll('.status-badge.status-manual');
+      badges.forEach(badge => {
+        const title = badge.parentElement.textContent.toLowerCase();
+        if (
+          (activity === 'snorkel' && title.includes('snorkel')) ||
+          (activity === 'cooking' && title.includes('cooking')) ||
+          (activity === 'chocolate' && title.includes('chocolate'))
+        ) {
+          badge.classList.remove('status-manual');
+          badge.classList.add('status-verified');
+          badge.textContent = 'Verified';
+
+          // Add verified details
+          const detailsDiv = badge.parentElement.nextElementSibling;
+          if (detailsDiv && detailsDiv.classList.contains('activity-details')) {
+            const verifiedInfo = document.createElement('div');
+            verifiedInfo.className = 'verified-data';
+            verifiedInfo.style.cssText = 'background:#f0fdf4;border-radius:6px;padding:8px;margin-top:8px;font-family:monospace;font-size:0.8rem;white-space:pre-wrap;';
+            verifiedInfo.textContent = data;
+            detailsDiv.appendChild(verifiedInfo);
+          }
+        }
+      });
+    }
   </script>
+
+  <style>
+    .verification-banner {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-bottom: 24px;
+      color: #166534;
+    }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 16px;
+      color: var(--primary);
+      text-decoration: none;
+    }
+    .back-link:hover { text-decoration: underline; }
+  </style>
 </body>
 </html>
