@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Puerto Vallarta Trip - Dec 12-17, 2025</title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --success: #16a34a;
+      --warning: #d97706;
+      --danger: #dc2626;
+      --gray: #6b7280;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+      color: #1f2937;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+      background: #f9fafb;
+    }
+    h1 { color: #111827; margin-bottom: 8px; }
+    .subtitle { color: var(--gray); margin-bottom: 24px; }
+    .allergy-banner {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .allergy-banner::before { content: "⚠️"; }
+    .day-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+    .day-header {
+      background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+      color: white;
+      padding: 16px 20px;
+    }
+    .day-header h2 { font-size: 1.25rem; margin-bottom: 4px; }
+    .day-theme { opacity: 0.9; font-size: 0.9rem; }
+    .activity {
+      padding: 16px 20px;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    .activity:last-child { border-bottom: none; }
+    .activity-time {
+      font-size: 0.85rem;
+      color: var(--primary);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .activity-title { font-weight: 600; margin-bottom: 8px; }
+    .activity-details { font-size: 0.9rem; color: var(--gray); }
+    .status-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    .status-verified { background: #dcfce7; color: var(--success); }
+    .status-manual { background: #fef3c7; color: var(--warning); }
+    .status-fixed { background: #e0e7ff; color: #4338ca; }
+    .price { font-weight: 600; color: var(--success); }
+    .booking-link {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 6px 12px;
+      background: var(--primary);
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 0.85rem;
+    }
+    .booking-link:hover { background: #1d4ed8; }
+    .plan-b {
+      background: #f3f4f6;
+      border-radius: 8px;
+      padding: 12px;
+      margin-top: 12px;
+      font-size: 0.85rem;
+    }
+    .plan-b-title { font-weight: 600; color: var(--gray); margin-bottom: 4px; }
+    .allergy-note {
+      background: #fefce8;
+      border-left: 3px solid #facc15;
+      padding: 8px 12px;
+      margin-top: 8px;
+      font-size: 0.85rem;
+    }
+    .checklist {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 24px;
+    }
+    .checklist h3 { margin-bottom: 12px; }
+    .checklist-item {
+      padding: 8px 0;
+      border-bottom: 1px solid #e5e7eb;
+      font-family: monospace;
+      font-size: 0.85rem;
+    }
+    .print-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 12px 24px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    @media print {
+      .print-btn { display: none; }
+      body { background: white; }
+    }
+  </style>
+</head>
+<body>
+  <h1>Puerto Vallarta Trip</h1>
+  <p class="subtitle">December 12-17, 2025 | Hacienda San Angel</p>
+
+  <div class="allergy-banner">
+    <strong>Seafood Allergy Alert:</strong> Cross-contact sensitive. Pre-message all food activities.
+  </div>
+
+  <!-- FRIDAY -->
+  <div class="day-card">
+    <div class="day-header">
+      <h2>Friday, December 12</h2>
+      <div class="day-theme">Arrival & Recovery</div>
+    </div>
+    <div class="activity">
+      <div class="activity-time">Evening</div>
+      <div class="activity-title">Dinner at Hacienda San Angel Gourmet <span class="status-badge status-fixed">Hotel</span></div>
+      <div class="activity-details">
+        Rooftop dining with city views. Zero logistics after travel.<br>
+        <span class="price">$60-$150/pp</span> depending on wine
+      </div>
+      <div class="allergy-note">
+        Request terrace table. Explicitly flag seafood allergy to kitchen.
+      </div>
+    </div>
+  </div>
+
+  <!-- SATURDAY -->
+  <div class="day-card">
+    <div class="day-header">
+      <h2>Saturday, December 13</h2>
+      <div class="day-theme">Wedding Day</div>
+    </div>
+    <div class="activity">
+      <div class="activity-time">Morning</div>
+      <div class="activity-title">Light breakfast & coffee walk</div>
+      <div class="activity-details">
+        Coco's Kitchen or Puerto Café. Save energy for wedding.
+      </div>
+    </div>
+    <div class="activity">
+      <div class="activity-time">Afternoon/Evening</div>
+      <div class="activity-title">Wedding <span class="status-badge status-fixed">Fixed</span></div>
+    </div>
+  </div>
+
+  <!-- SUNDAY -->
+  <div class="day-card">
+    <div class="day-header">
+      <h2>Sunday, December 15</h2>
+      <div class="day-theme">Private Snorkel Day</div>
+    </div>
+    <div class="activity">
+      <div class="activity-time">8:00 AM - 12:30 PM</div>
+      <div class="activity-title">Private Los Arcos Snorkeling <span class="status-badge status-manual">Manual Check</span></div>
+      <div class="activity-details">
+        Marine biologist guide, private boat for 2.<br>
+        <span class="price">~$564/group</span>
+      </div>
+      <a href="https://www.viator.com/tours/Puerto-Vallarta/Private-Los-Arcos-snorkeling/d630-46209P9" class="booking-link" target="_blank">Check Availability</a>
+      <div class="allergy-note">
+        Message operator: "Seafood allergy - no seafood snacks/handling on boat"
+      </div>
+      <div class="plan-b">
+        <div class="plan-b-title">Plan B Options:</div>
+        <a href="https://www.viator.com/tours/Puerto-Vallarta/Private-Snorkeling-Tour-to-Los-Arcos/d630-42129P3">Private Tour to Los Arcos</a> |
+        <a href="https://www.viator.com/tours/Puerto-Vallarta/A-GREAT-LOS-ARCOS-SNORKELING-EXPERIENCE/d630-59695P5">Los Arcos & Colomitos</a>
+      </div>
+    </div>
+    <div class="activity">
+      <div class="activity-time">Evening</div>
+      <div class="activity-title">Dinner at The Iguana or Makal</div>
+      <div class="activity-details">
+        Contemporary Mexican, romantic setting post-snorkel.
+      </div>
+      <div class="allergy-note">Pre-flag seafood allergy when booking</div>
+    </div>
+  </div>
+
+  <!-- MONDAY -->
+  <div class="day-card">
+    <div class="day-header">
+      <h2>Monday, December 16</h2>
+      <div class="day-theme">Cooking Class + Le Kliff</div>
+    </div>
+    <div class="activity">
+      <div class="activity-time">9:00 AM - 2:00 PM</div>
+      <div class="activity-title">Mexican Cooking Experience <span class="status-badge status-manual">Manual Check</span></div>
+      <div class="activity-details">
+        Market visit, cooking class, pool time, tequila & margaritas.<br>
+        <span class="price">~$92/person ($184 total)</span>
+      </div>
+      <a href="https://www.viator.com/tours/Puerto-Vallarta/Mexican-Cooking-Class-and-Mezcal-Tasting/d630-428665P2" class="booking-link" target="_blank">Check Availability</a>
+      <div class="allergy-note">
+        CRITICAL: Message before booking - "Severe seafood allergy, cross-contact concerns. Replace jalapeño-shrimp with cheese. Confirm kitchen can safely accommodate."
+      </div>
+      <div class="plan-b">
+        <div class="plan-b-title">Plan B:</div>
+        <a href="https://www.viator.com/tours/Puerto-Vallarta/Market-Visit-and-Cooking-Lesson-Learn-to-Cook-Authentic-Mexican-Food-with-a-Modern-Twist/d630-7626P100">Private Chef Cooking Class</a>
+      </div>
+    </div>
+    <div class="activity">
+      <div class="activity-time">Evening</div>
+      <div class="activity-title">Le Kliff Dinner <span class="status-badge status-fixed">Reserved</span></div>
+      <div class="activity-details">
+        Cliffside fine dining with dramatic views.
+      </div>
+      <div class="allergy-note">Confirm seafood allergy accommodation with restaurant</div>
+    </div>
+  </div>
+
+  <!-- TUESDAY -->
+  <div class="day-card">
+    <div class="day-header">
+      <h2>Tuesday, December 17</h2>
+      <div class="day-theme">Chocolate + Beach Club + Departure</div>
+    </div>
+    <div class="activity">
+      <div class="activity-time">10:30 AM - 12:30 PM</div>
+      <div class="activity-title">Chocolate & Truffles Workshop <span class="status-badge status-manual">Manual Check</span></div>
+      <div class="activity-details">
+        ChocoMuseo, small group (max 8). Fixed 10:30 AM start.<br>
+        <span class="price">~$63/person ($126 total)</span>
+      </div>
+      <a href="https://www.viator.com/tours/Puerto-Vallarta/Chocolates-and-truffles-workshop/d630-69776P2" class="booking-link" target="_blank">Check Availability</a>
+      <div class="plan-b">
+        <div class="plan-b-title">Plan B:</div>
+        <a href="https://www.viator.com/tours/Puerto-Vallarta/Bean-to-Bar-Chocolate-Workshop/d630-69776P1">Bean-to-Bar Workshop</a>
+      </div>
+    </div>
+    <div class="activity">
+      <div class="activity-time">1:00 PM - 4:00 PM (STRICT)</div>
+      <div class="activity-title">Táu Beach Club Day Pass <span class="status-badge status-verified">Verified</span></div>
+      <div class="activity-details">
+        Casa Velas adults-only beach club. Hours: 10am-5pm.<br>
+        <span class="price">$120/person ($240 total)</span> | 5 units available<br>
+        Includes: Beach access, 800 pesos F&B credit, wifi, valet parking
+      </div>
+      <a href="https://www.resortpass.com/hotels/casa-velas" class="booking-link" target="_blank">Book Now</a>
+      <div class="allergy-note">Flag seafood allergy when ordering food</div>
+    </div>
+    <div class="activity">
+      <div class="activity-time">4:15 PM</div>
+      <div class="activity-title">Leave beach club</div>
+      <div class="activity-details">Buffer for hotel checkout + airport</div>
+    </div>
+    <div class="activity">
+      <div class="activity-time">5:30 PM</div>
+      <div class="activity-title">Depart for Airport</div>
+      <div class="activity-details">~30-40 min to PVR. Arrive 3 hrs before international flight.</div>
+    </div>
+    <div class="activity">
+      <div class="activity-time">7:00 PM</div>
+      <div class="activity-title">Flight Departure <span class="status-badge status-fixed">Fixed</span></div>
+    </div>
+  </div>
+
+  <!-- BOOKING CHECKLIST -->
+  <div class="checklist">
+    <h3>Booking Checklist (Copy & Paste)</h3>
+    <div class="checklist-item">[ ] Snorkel (Sun): https://www.viator.com/tours/Puerto-Vallarta/Private-Los-Arcos-snorkeling/d630-46209P9</div>
+    <div class="checklist-item">[ ] Cooking (Mon): https://www.viator.com/tours/Puerto-Vallarta/Mexican-Cooking-Class-and-Mezcal-Tasting/d630-428665P2</div>
+    <div class="checklist-item">[ ] Chocolate (Tue): https://www.viator.com/tours/Puerto-Vallarta/Chocolates-and-truffles-workshop/d630-69776P2</div>
+    <div class="checklist-item">[✓] Beach Club (Tue): https://www.resortpass.com/hotels/casa-velas - VERIFIED: $120/pp, 5 units avail</div>
+  </div>
+
+  <button class="print-btn" onclick="window.print()">Print Itinerary</button>
+
+  <script>
+    // Copy checklist functionality could go here
+  </script>
+</body>
+</html>

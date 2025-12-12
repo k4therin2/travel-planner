@@ -1,0 +1,3 @@
+node_modules/
+*.har
+tmp/booking-verifier/AV*/
